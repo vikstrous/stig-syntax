@@ -1,0 +1,79 @@
+{ "name": "StigScript",
+  "scopeName": "source.stig",
+  "fileTypes": ["stig"],
+  "patterns": [
+    {
+      "match": "^(package)",
+      "captures": {
+        "1": { "name": "keyword.control.package.stig" }
+      }
+    },
+    {
+      "name": "comment.block.documentation.stig",
+      "begin": "/\\*\\*(?!/)",
+      "end": "\\*/",
+      "captures": {
+        "0": { "name": "punctuation.definition.comment.stig" }
+      }
+    },
+    {
+      "name": "comment.block.documentation.stig",
+      "begin": "/\\*",
+      "end": "\\*/",
+      "captures": {
+        "0": { "name": "comment.block.tig" }
+      }
+    },
+    {
+      "name": "constant.language.boolean.true.stig",
+      "match": "\\btrue\\b"
+    },
+    {
+      "name": "constant.language.boolean.false.stig",
+      "match": "\\bfalse\\b"
+    },
+    {
+      "name": "constant.language.null.stig",
+      "match": "\\bnull\\b"
+    },
+    {
+      "name": "constant.language.unknown.stig",
+      "match": "\\bunknown\\b"
+    },
+    {
+      "name": "keyword.control.stig",
+      "match": "\\b(else|if|as|and|or|not)\\b"
+    },
+    {
+      "name": "storage.type.stig",
+      "match": "\\b(int|str)\\b"
+    },
+    {
+      "name": "keyword.operator.stig",
+      "match": "\\b(new|is|where|effecting)\\b|<-|%|\\*|\\-|\\+|\\*=|==|=|!=|<=|>=|<|>|\\?|\\:|\\:\\:|\\+=|%=|\\|=|\\-=|~|~=|&=|\\^=|\\b(in|new)\\b"
+    },
+    {
+      "name": "constant.numeric.stig",
+      "match": "(?x:-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?)",
+      "comment": "handles integer and decimal numbers"
+    },
+    { "include": "#string"},
+    {
+      "name": "entity.other.attribute-name.class.stig",
+      "match": "(\\.)[a-zA-Z0-9_-]+"
+    }
+  ],
+  "repository": {
+    "string": {
+      "name": "string.quoted.stig",
+      "begin": "(['\"])",
+      "end": "(?<!\\\\)\\1",
+      "patterns": [
+        { "match": "\\\\.",
+          "name": "constant.character.escape.stig"
+        }
+      ]
+    }
+  },
+  "uuid": "ad7f14b4-8741-49a6-b662-f424bffe50d6"
+}
