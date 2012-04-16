@@ -11,20 +11,77 @@
 	<key>patterns</key>
 	<array>
 		<dict>
-			<key>captures</key>
-			<dict>
-				<key>1</key>
-				<dict>
-					<key>name</key>
-					<string>keyword.control.package.stig</string>
-				</dict>
-			</dict>
-			<key>match</key>
-			<string>^(package)</string>
+			<key>include</key>
+			<string>#comment</string>
 		</dict>
 		<dict>
+			<key>include</key>
+			<string>#comment_multiline</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#string</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#member</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#types</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#constants</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#free</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#typedef</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#control</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#operators</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#keywords</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#name</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#id</string>
+		</dict>
+		<dict>
+			<key>include</key>
+			<string>#numbers</string>
+		</dict>
+	</array>
+	<key>repository</key>
+	<dict>
+		<key>comment</key>
+		<dict>
 			<key>begin</key>
-			<string>/\*\*(?!/)</string>
+			<string>//</string>
+			<key>end</key>
+			<string>\n</string>
+			<key>name</key>
+			<string>comment.line.stig</string>
+		</dict>
+		<key>comment_multiline</key>
+		<dict>
+			<key>begin</key>
+			<string>/\*</string>
 			<key>captures</key>
 			<dict>
 				<key>0</key>
@@ -36,87 +93,89 @@
 			<key>end</key>
 			<string>\*/</string>
 			<key>name</key>
-			<string>comment.block.documentation.stig</string>
-		</dict>
-		<dict>
-			<key>begin</key>
-			<string>/\*</string>
-			<key>captures</key>
-			<dict>
-				<key>0</key>
+			<string>comment.block.stig</string>
+			<key>patterns</key>
+			<array>
 				<dict>
-					<key>name</key>
-					<string>comment.block.tig</string>
+					<key>include</key>
+					<string>#comment_multiline</string>
 				</dict>
-			</dict>
-			<key>end</key>
-			<string>\*/</string>
-			<key>name</key>
-			<string>comment.block.documentation.stig</string>
+			</array>
 		</dict>
+		<key>constants</key>
 		<dict>
 			<key>match</key>
-			<string>\btrue\b</string>
+			<string>\b(true|false|null|known|unknown|empty|free)\b</string>
 			<key>name</key>
-			<string>constant.language.boolean.true.stig</string>
+			<string>constant.language.stig</string>
 		</dict>
+		<key>control</key>
 		<dict>
 			<key>match</key>
-			<string>\bfalse\b</string>
-			<key>name</key>
-			<string>constant.language.boolean.false.stig</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\bnull\b</string>
-			<key>name</key>
-			<string>constant.language.null.stig</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\bunknown\b</string>
-			<key>name</key>
-			<string>constant.language.unknown.stig</string>
-		</dict>
-		<dict>
-			<key>match</key>
-			<string>\b(else|if|as|and|or|not)\b</string>
+			<string>\b(else_if|else|if|as|and_then|and|or_else|or|xor|not|assert|delete)\b</string>
 			<key>name</key>
 			<string>keyword.control.stig</string>
 		</dict>
+		<key>free</key>
+		<dict>
+			<key>begin</key>
+			<string>(free)\s*(::)\s*(\()</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#types</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keywords</string>
+				</dict>
+			</array>
+		</dict>
+		<key>id</key>
 		<dict>
 			<key>match</key>
-			<string>\b(int|str)\b</string>
+			<string>[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}</string>
 			<key>name</key>
-			<string>storage.type.stig</string>
+			<string>constant.numeric.id.stig</string>
 		</dict>
+		<key>keywords</key>
 		<dict>
 			<key>match</key>
-			<string>\b(new|is|where|effecting)\b|&lt;-|%|\*|\-|\+|\*=|==|=|!=|&lt;=|&gt;=|&lt;|&gt;|\?|\:|\:\:|\+=|%=|\|=|\-=|~|~=|&amp;=|\^=|\b(in|new)\b</string>
+			<string>\b(package|exists|keys|new|length_of|now|real|with|reduce|reverse_of|session_id|sorted_by|start|test|that|time_diff|time_pnt|user_id|rhs|lhs|new|desc|asc|is|from|in|id|given|effecting|where)\b</string>
 			<key>name</key>
-			<string>keyword.operator.stig</string>
+			<string>support.constant.js</string>
 		</dict>
+		<key>member</key>
 		<dict>
-			<key>comment</key>
-			<string>handles integer and decimal numbers</string>
+			<key>match</key>
+			<string>\.[a-zA-Z_][a-zA-Z0-9_]*</string>
+			<key>name</key>
+			<string>entity.other.attribute-name.class.stig</string>
+		</dict>
+		<key>name</key>
+		<dict>
+			<key>match</key>
+			<string>[_a-zA-Z][_a-zA-Z0-9]*</string>
+			<key>name</key>
+			<string>variable.name.stig</string>
+		</dict>
+		<key>numbers</key>
+		<dict>
 			<key>match</key>
 			<string>(?x:-?(?:0|[1-9]\d*)(?:(?:\.\d+)?(?:[eE][+-]?\d+)?)?)</string>
 			<key>name</key>
 			<string>constant.numeric.stig</string>
 		</dict>
-		<dict>
-			<key>include</key>
-			<string>#string</string>
-		</dict>
+		<key>operators</key>
 		<dict>
 			<key>match</key>
-			<string>(\.)[a-zA-Z0-9_-]+</string>
+			<string>!|!=|#|%|&amp;|\*|\*\*|\+|\-|\.|-&gt;|\.\.|/|&lt;-|&lt;=|&lt;\[|\]&gt;|&lt;\{|\}&gt;|=|==|&lt;|&gt;=|\?|\^|\||\*=|==|&lt;|&gt;</string>
 			<key>name</key>
-			<string>entity.other.attribute-name.class.stig</string>
+			<string>keyword.operator.stig</string>
 		</dict>
-	</array>
-	<key>repository</key>
-	<dict>
 		<key>string</key>
 		<dict>
 			<key>begin</key>
@@ -134,6 +193,31 @@
 					<string>constant.character.escape.stig</string>
 				</dict>
 			</array>
+		</dict>
+		<key>typedef</key>
+		<dict>
+			<key>begin</key>
+			<string>(::)\s*(\()</string>
+			<key>end</key>
+			<string>\)</string>
+			<key>patterns</key>
+			<array>
+				<dict>
+					<key>include</key>
+					<string>#types</string>
+				</dict>
+				<dict>
+					<key>include</key>
+					<string>#keywords</string>
+				</dict>
+			</array>
+		</dict>
+		<key>types</key>
+		<dict>
+			<key>match</key>
+			<string>\b(int|str|bool)\b</string>
+			<key>name</key>
+			<string>storage.type.stig</string>
 		</dict>
 	</dict>
 	<key>scopeName</key>

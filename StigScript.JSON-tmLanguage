@@ -2,68 +2,72 @@
   "scopeName": "source.stig",
   "fileTypes": ["stig"],
   "patterns": [
-    {
-      "match": "^(package)",
-      "captures": {
-        "1": { "name": "keyword.control.package.stig" }
-      }
+    { "include": "#comment"},
+    { "include": "#comment_multiline"},
+    { "include": "#string"},
+    { "include": "#member"},
+    { "include": "#types"},
+    { "include": "#constants"},
+    { "include": "#control"},
+    { "include": "#operators"},
+    { "include": "#keywords"},
+    { "include": "#name"},
+    { "include": "#id"},
+    { "include": "#numbers"}
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.stig",
+      "begin": "//",
+      "end": "\\n"
     },
-    {
-      "name": "comment.block.documentation.stig",
-      "begin": "/\\*\\*(?!/)",
-      "end": "\\*/",
-      "captures": {
-        "0": { "name": "punctuation.definition.comment.stig" }
-      }
-    },
-    {
-      "name": "comment.block.documentation.stig",
+    "comment_multiline": {
+      "name": "comment.block.stig",
       "begin": "/\\*",
       "end": "\\*/",
       "captures": {
-        "0": { "name": "comment.block.tig" }
-      }
+        "0": { "name": "punctuation.definition.comment.stig" }
+      },
+      "patterns": [
+        { "include": "#comment_multiline"}
+      ]
     },
-    {
-      "name": "constant.language.boolean.true.stig",
-      "match": "\\btrue\\b"
-    },
-    {
-      "name": "constant.language.boolean.false.stig",
-      "match": "\\bfalse\\b"
-    },
-    {
-      "name": "constant.language.null.stig",
-      "match": "\\bnull\\b"
-    },
-    {
-      "name": "constant.language.unknown.stig",
-      "match": "\\bunknown\\b"
-    },
-    {
-      "name": "keyword.control.stig",
-      "match": "\\b(else|if|as|and|or|not)\\b"
-    },
-    {
-      "name": "storage.type.stig",
-      "match": "\\b(int|str)\\b"
-    },
-    {
-      "name": "keyword.operator.stig",
-      "match": "\\b(new|is|where|effecting)\\b|<-|%|\\*|\\-|\\+|\\*=|==|=|!=|<=|>=|<|>|\\?|\\:|\\:\\:|\\+=|%=|\\|=|\\-=|~|~=|&=|\\^=|\\b(in|new)\\b"
-    },
-    {
-      "name": "constant.numeric.stig",
-      "match": "(?x:-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?)",
-      "comment": "handles integer and decimal numbers"
-    },
-    { "include": "#string"},
-    {
+    "member": {
       "name": "entity.other.attribute-name.class.stig",
-      "match": "(\\.)[a-zA-Z0-9_-]+"
-    }
-  ],
-  "repository": {
+      "match": "\\.[a-zA-Z_][a-zA-Z0-9_]*"
+    },
+    "types": {
+      "name": "storage.type.stig",
+      "match": "\\b(int|str|bool)\\b"
+    },
+    "numbers": {
+      "name": "constant.numeric.stig",
+      "match": "(?x:-?(?:0|[1-9]\\d*)(?:(?:\\.\\d+)?(?:[eE][+-]?\\d+)?)?)"
+    },
+    "id": {
+      "name": "constant.numeric.id.stig",
+      "match": "[0-9A-Fa-f]{8}-([0-9A-Fa-f]{4}-){3}[0-9A-Fa-f]{12}"
+    },
+    "constants": {
+      "name": "constant.language.stig",
+      "match": "\\b(true|false|null|known|unknown|empty|free)\\b"
+    },
+    "name": {
+      "name": "variable.name.stig",
+      "match": "[_a-zA-Z][_a-zA-Z0-9]*"
+    },
+    "control": {
+      "name": "keyword.control.stig",
+      "match": "\\b(else_if|else|if|as|and_then|and|or_else|or|xor|not|assert|delete)\\b"
+    },
+    "operators": {
+      "name": "keyword.operator.stig",
+      "match": "!|!=|#|%|&|\\*|\\*\\*|\\+|\\-|\\.|->|\\.\\.|/|<-|<=|<\\[|\\]>|<\\{|\\}>|=|==|<|>=|\\?|\\^|\\||\\*=|==|<|>"
+    },
+    "keywords": {
+      "name": "support.constant.js",
+      "match": "\\b(package|exists|keys|new|length_of|now|real|with|reduce|reverse_of|session_id|sorted_by|start|test|that|time_diff|time_pnt|user_id|rhs|lhs|new|desc|asc|is|from|in|id|given|effecting|where)\\b"
+    },
     "string": {
       "name": "string.quoted.stig",
       "begin": "(['\"])",
