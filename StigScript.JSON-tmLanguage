@@ -1,6 +1,6 @@
 { "name": "StigScript",
   "scopeName": "source.stig",
-  "fileTypes": ["stig"],
+  "fileTypes": ["stig", "checkpoint"],
   "patterns": [
     { "include": "#comment"},
     { "include": "#comment_multiline"},

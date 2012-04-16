@@ -5,6 +5,7 @@
 	<key>fileTypes</key>
 	<array>
 		<string>stig</string>
+		<string>checkpoint</string>
 	</array>
 	<key>name</key>
 	<string>StigScript</string>
