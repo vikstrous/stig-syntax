@@ -70,7 +70,7 @@
     },
     "string": {
       "name": "string.quoted.stig",
-      "begin": "(['\"])",
+      "begin": "r?(['\"])",
       "end": "(?<!\\\\)\\1",
       "patterns": [
         { "match": "\\\\.",
