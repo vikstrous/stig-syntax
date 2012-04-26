@@ -147,7 +147,7 @@
 		<key>operators</key>
 		<dict>
 			<key>match</key>
-			<string>!|!=|#|%|&amp;|\*|\*\*|\+|\-|\.|-&gt;|\.\.|/|&lt;-|&lt;=|&lt;\[|\]&gt;|&lt;\{|\}&gt;|=|==|&lt;|&gt;=|\?|\^|\||\*=|==|&lt;|&gt;</string>
+			<string>!=|!|#|%|&amp;|\*\*|\*|\+|-&gt;|\-|\.\.|\.|/|&lt;-|&lt;=|&lt;\[|\]&gt;|&lt;\{|\}&gt;|=|==|&lt;|&gt;=|\?|\^|\||\*=|==|&lt;|&gt;</string>
 			<key>name</key>
 			<string>keyword.operator.stig</string>
 		</dict>
